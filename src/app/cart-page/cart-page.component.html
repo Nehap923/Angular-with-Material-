@@ -1,0 +1,56 @@
+<div class="row justify-content-between">
+    <div class="col-8">
+        <h2>Cart Page</h2>
+        <div class="row align-items-start">
+            <div class="col">
+                image </div>
+            <div class="col">
+                Name </div>
+            <div class="col">
+                Price </div>
+        <div class="col">
+            Quantity </div>
+    </div>
+    <div class="row align-items-start" *ngFor="let data of cartData">
+        <div class="col">
+            <img src="{{data.image}}" class="card-img-top"> </div>
+        <div class="col">
+            {{data.name}} </div>
+        <div class="col">
+            {{data.price}} </div>
+    <div class="col">
+        {{data.quantity}} </div>
+        <button type="button" class="btn btn-primary removeBtn" (click)="removeCart(data.id)">Remove To Cart</button>
+    </div>
+</div>
+<div class="col-4">
+    <h3>Summary</h3>
+    <div class="card" style="width: 18rem;">
+        <ul class="list-group2 list-group-flush">
+            <li class="list-group-item">
+                <span>Amount</span>
+                <span>{{priceSummary.price}}</span>
+            </li>
+            <li class="list-group-item">
+                <span>Tax</span>
+                <span>{{priceSummary.tax}}</span>
+            </li>
+            <li class="list-group-item">
+                <span>Delivery Fees</span>
+                <span>{{priceSummary.delivery}}</span>
+            </li>
+            <li class="list-group-item">
+                <span>Discount</span>
+                <span>{{priceSummary.discount}}</span>
+            </li>
+            <li class="list-group-item">
+                <span>
+                    <h3>Total</h3>
+                </span>
+                <span>{{priceSummary.total}}</span>
+            </li>
+            <button class="btn btn-primary" (click)="checkOut()">CheckOut</button>
+        </ul>
+    </div>
+</div>
+</div>

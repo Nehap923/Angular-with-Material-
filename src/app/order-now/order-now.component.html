@@ -1,0 +1,21 @@
+<div class="row justify-content-between">
+    <div class="col-8">
+        <h2>Cart Page</h2>
+        <div class="row align-items-start">
+            <div class="col">Order </div>
+            <div class="col">Order Id </div>
+            <div class="col">Price </div>
+            <div class="col">Status </div>
+            <div class="col">Action </div>
+        </div>
+    <div class="row align-items-start" *ngFor="let list of orderList">
+        <div class="col"><img src="" class="card-img-top"> </div>
+        <div class="col"> {{list.id}}</div>
+        <div class="col"> {{list.totalPrice}}</div>
+        <div class="col"> In Progress</div>
+        <div class="col">
+        <button type="button" class="btn btn-primary" (click)="cancelOrder(list.id)">Cancel Order</button>
+        </div>
+    </div>
+</div>
+</div>

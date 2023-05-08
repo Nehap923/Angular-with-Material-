@@ -1,0 +1,16 @@
+h4{
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.total{
+    font-size: 1em;
+}
+.description{
+    color:green;
+    font-size: 1em;
+}
+.mat-iocn{
+    position: relative;
+    padding: 0 20px;
+    top: 5px;
+}

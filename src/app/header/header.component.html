@@ -1,0 +1,218 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div *ngIf="menutype!=='seller'">
+    <form class="d-flex" role="search">
+      <input #serchInput class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+        (keyup)="searchValue($event)">
+      <button class="btn btn-outline-success" type="submit" (click)="serchClickEvent(serchInput.value)">Search</button>
+      <ul class="serach-result" *ngIf="serchData">
+        <li *ngFor="let search of serchData">
+          <a (mousedown)='redirectToDetails(search.id)'>{{search.name}}</a>
+        </li>
+      </ul>
+    </form>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngSwitch]="menutype">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'default'">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="seller-auth">Admin</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="user-auth">Login/SignUp</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="">Cart({{cartItem}})</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'seller'">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="seller-home">List Of Products</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="seller-add-product">Add Product <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)='logOut()'>LogOut</a>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" routerLink="">{{loggedUserName | titlecase}}</span>
+      </li>
+    </ul>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'user'">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="seller-auth">Seller</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" routerLink="">{{userName | titlecase}}</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" routerLink="orderNow">My Order</span>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)='userLogOut()'>Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="cartItem>0?'cart-page':null">Cart({{cartItem}})</a>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+
+<!-- using Angular Material  -->
+
+<div fxShow="true" >
+  <!-- for responsive add fxHide.lt-md="true" -->
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Responsive Navigation</span>
+      <span class="example-spacer"></span>
+      <div *ngIf="menutype!=='seller'">
+        <form class="d-flex" role="search">
+          <input #serchInput class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+            (keyup)="searchValue($event)">
+          <button class="btn btn-outline-success" type="submit"
+            (click)="serchClickEvent(serchInput.value)">Search</button>
+          <ul class="serach-result" *ngIf="serchData">
+            <li *ngFor="let search of serchData">
+              <a (mousedown)='redirectToDetails(search.id)'>{{search.name}}</a>
+            </li>
+          </ul>
+        </form>
+      </div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="flex-end" id="navbarSupportedContent" [ngSwitch]="menutype">
+        <ul fxLayout="row" fxLayoutGap="20px" class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'default'">
+          <li class="nav-item">
+            <a routerLink="seller-auth" mat-button>
+              <mat-icon>account_box </mat-icon>
+              Admin
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a routerLink="/" mat-button>
+              <mat-icon>home </mat-icon>
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="user-auth" mat-button>
+              <mat-icon>login </mat-icon>
+              SignIn/SignUp
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="user-auth" mat-button>
+              <mat-icon>add_shopping_cart({{cartItem}}) </mat-icon>
+              Cart
+            </a>
+          </li>
+        </ul>
+        <ul fxLayout="row" fxLayoutGap="20px" class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'seller'">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="seller-home">List Of Products</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="seller-add-product">Add Product <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>person_outline</mat-icon>
+              My Account
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)='logOut()'>
+                <mat-icon>exit_to_app</mat-icon>
+                Sign out
+              </button>
+            </mat-menu>
+          </li>
+          <li class="nav-item">
+            <a mat-button>
+              <mat-icon>account circle icon</mat-icon>
+              {{loggedUserName | titlecase}}</a>
+          </li>
+        </ul>
+        <ul fxLayout="row" fxLayoutGap="20px" class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'user'">
+          <li class="nav-item">
+            <a routerLink="seller-auth" mat-button>
+              <mat-icon>admin_panel_settings </mat-icon>
+              Seller
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a routerLink="/" mat-button>
+              <mat-icon>home </mat-icon>
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a mat-button>
+              <mat-icon>account_circle</mat-icon>
+              {{userName | titlecase}}</a>
+          </li>
+          <li class="nav-item">
+            <a mat-button routerLink="orderNow">
+              <mat-icon>shopping_basket</mat-icon>
+              My Order</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="cartItem>0?'cart-page':null" mat-button>
+              <mat-icon>add_shopping_cart</mat-icon>
+              Cart({{cartItem}})
+            </a>
+          </li>
+          <li class="nav-item">
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>person_outline</mat-icon>
+              My Account
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)='userLogOut()'>
+                <mat-icon>exit_to_app</mat-icon>
+                Sign out
+              </button>
+            </mat-menu>
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <!-- <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a href="#" mat-list-item>
+          <mat-icon>notifications</mat-icon>
+          Notifications
+        </a>
+        <a href="#" mat-list-item>
+          <mat-icon>message</mat-icon>
+          Messages</a>
+        <a href="#" mat-list-item>
+          <mat-icon>account_box</mat-icon>
+          My Account
+        </a>
+        <a href="#" mat-list-item>
+          <mat-icon>lock</mat-icon>
+          My Account
+        </a>
+        <a (click)="sidenav.toggle()" mat-list-item>
+          <mat-icon>close</mat-icon> Close
+        </a>
+      </mat-nav-list>
+    </mat-sidenav> -->
+    <!-- <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content> -->
+  <!-- </mat-sidenav-container> -->
+</div>

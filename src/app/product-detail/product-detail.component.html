@@ -1,0 +1,29 @@
+<div class="card mb-3" style="max-width: 540px;" *ngIf="productDta">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{productDta.image}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">        
+            {{productDta.name}}</h5>
+          <p class="card-text">{{productDta.description}}</p>
+          <p class="card-text">{{productDta.price}}</p>
+          <p class="card-text bg-colour" [style.background]="productDta.colour"></p>
+          <p class="card-text"><small class="text-muted">{{productDta.categories}}</small></p>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent border-success">
+        <div class="d-grid gap-2 d-md-block">
+            <button *ngIf="!removeCart" class="btn btn-primary" type="button" (click)="addToCart()">Add To Cart</button>
+            <button *ngIf="removeCart" class="btn btn-primary" type="button" (click)="removeToCart(productDta.id)">Remove To Cart</button>
+            <button class="btn btn-primary" type="button">Buy Now</button>
+          </div>
+          <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-primary" type="button" (click)="handleClickEvent('minus')">-</button>
+            <input type="text" value="{{productQuantity}}">
+            <button class="btn btn-primary" type="button" (click)="handleClickEvent('plus')">+</button>
+          </div>
+      </div>
+    </div>
+  </div>
